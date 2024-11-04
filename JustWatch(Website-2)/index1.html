@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Row Image Slider</title>
+  <style>
+    /* Basic Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Container Styling */
+    .slider-container {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+      margin: 40px auto;
+    }
+
+    /* Row of Images */
+    .slider-row {
+      display: flex;
+      gap: 5vw;
+      transition: transform 0.3s ease;
+    }
+
+    /* Slide Styling */
+    .slide {
+        display: flex;
+      min-width: 15vw;
+      margin-right: 10px;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation Buttons */
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 50%;
+    }
+
+    .nav-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <!-- Slider Row with Multiple Images -->
+    <div class="slider-row" id="sliderRow">
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+1" alt="Image 1"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+2" alt="Image 2"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+3" alt="Image 3"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+4" alt="Image 4"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+5" alt="Image 5"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+      <div class="slide"><img src="https://via.placeholder.com/200x150?text=Image+6" alt="Image 6"></div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button class="nav-button prev" onclick="slide(-1)">&#10094;</button>
+    <button class="nav-button next" onclick="slide(1)">&#10095;</button>
+  </div>
+
+    <script>
+        let scrollPosition = 0;
+        const slideWidth = 210; // Slide width + margin-right
+        const sliderRow = document.getElementById("sliderRow");
+
+        // Slide function to scroll the row
+        function slide(direction) {
+        const maxScroll = sliderRow.scrollWidth - sliderRow.clientWidth;
+
+        // Adjust scroll position
+        scrollPosition += direction * slideWidth;
+
+        // Boundaries for scrolling
+        if (scrollPosition < 0) scrollPosition = 0;
+        if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+
+        // Apply the transform
+        sliderRow.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    </script>
+
+</body>
+</html>
